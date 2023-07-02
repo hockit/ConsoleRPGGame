@@ -4,7 +4,9 @@ class Game
 public:
 
 	void mainMenu();
-	void makeChoice(int choice);
+	void gameMenu();
+	void mainChoice(int choice);
+	void gameChoice(int choice);
 
 	bool getGameStatus() const { return gameStatus_; }
 
