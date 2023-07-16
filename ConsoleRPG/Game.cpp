@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Game.h"
 
+class Event* event;
+
 void Game::mainMenu()
 {
 	system("CLS");
