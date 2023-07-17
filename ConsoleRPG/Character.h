@@ -6,6 +6,7 @@ public:
 	Character();
 
 	int getHpMax() const { return hpMax_; }
+	int getHpMin() const { return hpMin_; }
 	int getStrenght() const { return strenght_; }
 	int getDexterity() const { return dexterity_; }
 

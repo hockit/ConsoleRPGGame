@@ -1,10 +1,17 @@
 #include "Event.h"
 #include <iostream>
+#include <cstdlib>
 
 
-void Event::Fight(Character& character/*, Enemy& enemy*/)
+void Event::Fight(Character& character, Enemy& enemy)
 {
+	int enemyDamage;
+	int characterDamage;
 
+	do
+	{
+		//TODO: Create Fight event 
+	} while (character.getHpMin() > 0 || enemy.getHp() > 0);
 }
 
 void Event::Master(Character& character)
