@@ -4,7 +4,12 @@ class Enemy
 public:
 
 	void displayStat() const;
+
 	int getHp() const { return hp_; }
+	int getDmgMin() const { return damageMin_; }
+	int getDmgMax() const { return damageMax_; }
+
+	void setHp(int hpSubstract) { hp_ -= hpSubstract; }
 private:
 
 	// Base attributes

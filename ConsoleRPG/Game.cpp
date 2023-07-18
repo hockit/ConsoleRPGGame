@@ -1,42 +1,13 @@
 #include <iostream>
 #include "Game.h"
+#include "Character.h"
+#include "Enemy.h"
 
 class Event* event;
+class Character character;
+class Enemy enemy;
 
 void Game::mainMenu()
-{
-	system("CLS");
-	std::cout << "==== MAIN MENU ====" << std::endl;
-	std::cout << "[1] New game" << std::endl;
-	std::cout << "[2] Load game" << std::endl;
-	std::cout << "[3] Exit" << std::endl;
-	std::cout << " >> ";
-	std::cin >> choice_;
-	mainChoice(choice_);
-}
-
-void Game::mainChoice(int choice)
-{
-	switch (choice)
-	{
-	case 1:
-		//Character::createCharacter();
-		//gameMenu();
-		break;
-
-	case 2:
-		//Character::loadCharacter();
-		break;
-	case 3:
-		gameStatus_ = false;
-		break;
-
-	default:
-		std::cout << "Invalid input";
-	}
-}
-
-void Game::gameMenu()
 {
 	system("CLS");
 	std::cout << "==== MAIN MENU ====" << std::endl;
@@ -46,34 +17,33 @@ void Game::gameMenu()
 	std::cout << "[4] Save character" << std::endl;
 	std::cout << "[5] Load character" << std::endl;
 	std::cout << "[6] Exit" << std::endl;
-	std::cout << " >> ";
+	std::cout << ">> ";
 	std::cin >> choice_;
-	gameChoice(choice_);
-}
 
-void Game::gameChoice(int choice)
-{
-	switch (choice)
+	switch (choice_)
 	{
 	case 1:
-		//printStat();
+		character.displayStats();
 		break;
 	case 2:
-		//updateStats();
+		event->updateStats(character);
 		break;
 	case 3:
-		//goDungeon();
+		event->Fight(character, enemy);
 		break;
 	case 4:
 		//saveCharacter():
 		break;
 	case 5:
 		//loadCharacter();
+		break;
 	case 6:
 		//saveCharacter();
 		gameStatus_ = false;
+		break;
 	default:
 		std::cout << "Invalid input" << std::endl;
 		break;
 	}
 }
+
