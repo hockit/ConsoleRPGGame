@@ -4,8 +4,10 @@
 #include <Windows.h>
 
 
-void Event::Fight(Character& character, Enemy& enemy)
+void Event::Fight(Character& character)
 {
+	Enemy enemy = Enemy(character.getLevel() + rand() % 4);
+
 	int enemyDamage;
 	int characterDamage;
 	int enemyHp = enemy.getHp();
@@ -13,23 +15,30 @@ void Event::Fight(Character& character, Enemy& enemy)
 
 	do
 	{
-		//TODO: Create Fight event 
 		enemyDamage = rand() % (enemy.getDmgMax() + enemy.getDmgMin());
 		characterDamage = rand() % character.getStrenght();
+
+		if (characterHp > 0)
+		{
+			std::cout << "Enemy total attack: " << enemyDamage << std::endl;
+			characterHp -= enemyDamage;
+			std::cout << "Your HP: " << characterHp << std::endl;
+		}
 		
-		std::cout << "Enemy total attack: " << enemyDamage << std::endl;
-		characterHp -= enemyDamage;
-		std::cout << "Your HP: " << characterHp << std::endl;
 		Sleep(2000);
 
-		std::cout << "Your total attack: " << characterDamage << std::endl;
-		enemyHp -= characterDamage;
-		std::cout << "Enemy HP: " << enemyHp << std::endl;
+		if (enemyHp > 0)
+		{
+			std::cout << "Your total attack: " << characterDamage << std::endl;
+			enemyHp -= characterDamage;
+			std::cout << "Enemy HP: " << enemyHp << std::endl;
+		}
+		
 		Sleep(2000);
 
-	} while (enemyHp < 0 || characterHp < 0);
+	} while (enemyHp > 0 && characterHp > 0);
 
-	if (character.getHpMin() > 0)
+	if (characterHp > 0)
 	{
 		std::cout << "YOU WIN!!!" << std::endl;
 		system("pause");

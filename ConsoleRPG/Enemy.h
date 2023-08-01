@@ -1,7 +1,10 @@
 #pragma once
+#include <string>
 class Enemy
 {
 public:
+
+	Enemy(int level = 0);
 
 	void displayStat() const;
 
@@ -12,18 +15,19 @@ public:
 	void setHp(int hpSubstract) { hp_ -= hpSubstract; }
 private:
 
+	std::string name_{ "" };
 	// Base attributes
 	int hp_{ 5 };
 	int damageMin_{ 1 };
-	int damageMax_{ 3 };
+	int damageMax_{ 2 };
 
-	enum class EnemyPower
+	/*enum class EnemyPower
 	{
-		Low = 4,
-		Mid = 7,
-		High = 10,
-		Boss = 15
-	};
+		LOW,
+		MID,
+		HIGH,
+		BOSS
+	};*/
 
 	/* TODO: Lootbox: After victory against enemy, some random item drop.
 		Power of item will depend on dungeon level*/

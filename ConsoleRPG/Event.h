@@ -8,8 +8,10 @@ private:
 	
 	bool bWin_{ false };
 
+
 public:
 	void updateStats(Character& character);
-	void Fight(Character& character, Enemy& enemy);
+	void Fight(Character& character);
+	
 };
 

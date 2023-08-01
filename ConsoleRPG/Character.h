@@ -5,6 +5,7 @@ public:
 
 	Character();
 
+	int getLevel() const { return level_; }
 	int getHpMax() const { return hpMax_; }
 	int getHpMin() const { return hpMin_; }
 	int getStrenght() const { return strenght_; }
@@ -19,6 +20,7 @@ public:
 
 private:
 
+	int level_{ 1 };
 	int hpMin_{ 10 };
 	int hpMax_{ 10 };
 	int strenght_{ 4 };

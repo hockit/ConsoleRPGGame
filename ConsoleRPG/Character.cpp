@@ -10,6 +10,7 @@ Character::Character()
 
 void Character::displayStats() const
 {
+	system("CLS");
 	std::cout << "Character attributes" << std::endl;
 	std::cout << "HP: " << hpMin_ << " / " << hpMax_ << std::endl;
 	std::cout << "Strenght: " << strenght_ << std::endl;

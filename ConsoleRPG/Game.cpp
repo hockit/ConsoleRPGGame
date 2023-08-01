@@ -1,11 +1,9 @@
 #include <iostream>
 #include "Game.h"
 #include "Character.h"
-#include "Enemy.h"
 
 class Event* event;
 class Character character;
-class Enemy enemy;
 
 void Game::mainMenu()
 {
@@ -29,7 +27,7 @@ void Game::mainMenu()
 		event->updateStats(character);
 		break;
 	case 3:
-		event->Fight(character, enemy);
+		event->Fight(character);
 		break;
 	case 4:
 		//saveCharacter():
