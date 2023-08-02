@@ -1,5 +1,9 @@
 #pragma once
 #include "Event.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
 class Game
 {
 public:
@@ -12,5 +16,10 @@ private:
 
 	bool gameStatus_{ true };
 	int choice_{ 0 };
+	std::string fileName_{ "gameData.txt" };
+	std::fstream gameFile_;
+
+	void loadGame();
+	void saveGame();
 };
 

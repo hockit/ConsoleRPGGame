@@ -1,4 +1,4 @@
-#include <iostream>
+
 #include "Game.h"
 #include "Character.h"
 
@@ -30,10 +30,10 @@ void Game::mainMenu()
 		event->Fight(character);
 		break;
 	case 4:
-		//saveCharacter():
+		saveGame();
 		break;
 	case 5:
-		//loadCharacter();
+		loadGame();
 		break;
 	case 6:
 		//saveCharacter();
@@ -43,5 +43,47 @@ void Game::mainMenu()
 		std::cout << "Invalid input" << std::endl;
 		break;
 	}
+}
+
+void Game::saveGame()
+{
+	gameFile_.open(fileName_, std::ios::out);
+
+	if (gameFile_.is_open())
+	{
+		gameFile_ << character.getLevel() << std::endl
+			<< character.getHpMax() << std::endl
+			<< character.getHpMin() << std::endl
+			<< character.getStrenght() << std::endl
+			<< character.getDexterity() << std::endl;
+	}
+
+	gameFile_.close();
+}
+
+void Game::loadGame()
+{	
+	gameFile_.open(fileName_, std::ios::in);
+	std::string line;
+	int lineCount{ 1 };
+
+	if (gameFile_.is_open())
+	{
+		while (std::getline(gameFile_, line))
+		{
+			switch (lineCount)
+			{
+			case 1: character.loadLevel(atoi(line.c_str()));
+			case 2: character.loadHpMax(atoi(line.c_str()));
+			case 3: character.loadHpMin(atoi(line.c_str()));
+			case 4: character.loadStrenght(atoi(line.c_str()));
+			case 5: character.loadDexterity(atoi(line.c_str()));
+				break;
+			}
+			++lineCount;
+		}
+	}
+	
+	gameFile_.close();
 }
 

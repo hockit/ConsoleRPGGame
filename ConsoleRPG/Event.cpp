@@ -6,7 +6,7 @@
 
 void Event::Fight(Character& character)
 {
-	Enemy enemy = Enemy(character.getLevel() + rand() % 4);
+	Enemy enemy = Enemy(character.getLevel() + rand() % 2);
 
 	int enemyDamage;
 	int characterDamage;
@@ -15,40 +15,39 @@ void Event::Fight(Character& character)
 
 	do
 	{
-		enemyDamage = rand() % (enemy.getDmgMax() + enemy.getDmgMin());
-		characterDamage = rand() % character.getStrenght();
+		enemyDamage = rand() % (enemy.getDmgMax() + enemy.getDmgMin());		
 
-		if (characterHp > 0)
+		std::cout << "Enemy total attack: " << enemyDamage << std::endl;
+		characterHp -= enemyDamage;
+		std::cout << "Your HP: " << characterHp << std::endl;
+
+		if (characterHp <= 0)
 		{
-			std::cout << "Enemy total attack: " << enemyDamage << std::endl;
-			characterHp -= enemyDamage;
-			std::cout << "Your HP: " << characterHp << std::endl;
+			std::cout << "YOU LOSE!!!" << std::endl;
+			system("pause");
+			break;
 		}
 		
-		Sleep(2000);
+		Sleep(1500);
 
-		if (enemyHp > 0)
+		characterDamage = rand() % 1 + character.getStrenght();
+
+		std::cout << "Your total attack: " << characterDamage << std::endl;
+		enemyHp -= characterDamage;
+		std::cout << "Enemy HP: " << enemyHp << std::endl;
+
+		if (enemyHp <= 0)
 		{
-			std::cout << "Your total attack: " << characterDamage << std::endl;
-			enemyHp -= characterDamage;
-			std::cout << "Enemy HP: " << enemyHp << std::endl;
+			std::cout << "YOU WIN!!!" << std::endl;
+			system("pause");
+			break;
+			updateStats(character);
 		}
 		
-		Sleep(2000);
+		Sleep(1500);
 
-	} while (enemyHp > 0 && characterHp > 0);
+	} while (characterHp > 0 && enemyHp > 0);
 
-	if (characterHp > 0)
-	{
-		std::cout << "YOU WIN!!!" << std::endl;
-		system("pause");
-		updateStats(character);
-	}
-	else
-	{
-		std::cout << "YOU LOSE!!!" << std::endl;
-		system("pause");
-	}
 }
 
 void Event::updateStats(Character& character)
