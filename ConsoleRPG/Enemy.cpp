@@ -1,5 +1,4 @@
 #include "Enemy.h"
-#include <iostream>
 
 Enemy::Enemy(int level)
 {

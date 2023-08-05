@@ -1,4 +1,3 @@
-
 #include "Game.h"
 #include "Character.h"
 
@@ -10,11 +9,10 @@ void Game::mainMenu()
 	system("CLS");
 	std::cout << "==== MAIN MENU ====" << std::endl;
 	std::cout << "[1] Character sheet" << std::endl;
-	std::cout << "[2] Master" << std::endl;
-	std::cout << "[3] Dungeon" << std::endl;
-	std::cout << "[4] Save character" << std::endl;
-	std::cout << "[5] Load character" << std::endl;
-	std::cout << "[6] Exit" << std::endl;
+	std::cout << "[2] Dungeon" << std::endl;
+	std::cout << "[3] Save character" << std::endl;
+	std::cout << "[4] Load character" << std::endl;
+	std::cout << "[5] Exit" << std::endl;
 	std::cout << ">> ";
 	std::cin >> choice_;
 
@@ -24,19 +22,15 @@ void Game::mainMenu()
 		character.displayStats();
 		break;
 	case 2:
-		event->updateStats(character);
-		break;
-	case 3:
 		event->Fight(character);
 		break;
-	case 4:
+	case 3:
 		saveGame();
 		break;
-	case 5:
+	case 4:
 		loadGame();
 		break;
-	case 6:
-		//saveCharacter();
+	case 5:
 		gameStatus_ = false;
 		break;
 	default:
@@ -52,13 +46,14 @@ void Game::saveGame()
 	if (gameFile_.is_open())
 	{
 		gameFile_ << character.getLevel() << std::endl
-			<< character.getHpMax() << std::endl
-			<< character.getHpMin() << std::endl
+			<< character.getBaseHp() << std::endl
 			<< character.getStrenght() << std::endl
 			<< character.getDexterity() << std::endl;
 	}
 
 	gameFile_.close();
+
+	std::cout << "Game saved." << std::endl;
 }
 
 void Game::loadGame()
@@ -74,10 +69,9 @@ void Game::loadGame()
 			switch (lineCount)
 			{
 			case 1: character.loadLevel(atoi(line.c_str()));
-			case 2: character.loadHpMax(atoi(line.c_str()));
-			case 3: character.loadHpMin(atoi(line.c_str()));
-			case 4: character.loadStrenght(atoi(line.c_str()));
-			case 5: character.loadDexterity(atoi(line.c_str()));
+			case 2: character.loadHp(atoi(line.c_str()));
+			case 3: character.loadStrenght(atoi(line.c_str()));
+			case 4: character.loadDexterity(atoi(line.c_str()));
 				break;
 			}
 			++lineCount;

@@ -1,5 +1,6 @@
 #pragma once
-#include <string>
+#include "HEADERS.h"
+
 class Enemy
 {
 public:

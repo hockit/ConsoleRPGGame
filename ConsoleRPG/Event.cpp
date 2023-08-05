@@ -1,17 +1,16 @@
 #include "Event.h"
-#include <iostream>
-#include <cstdlib>
-#include <Windows.h>
 
 
 void Event::Fight(Character& character)
 {
+	system("CLS");
+
 	Enemy enemy = Enemy(character.getLevel() + rand() % 2);
 
 	int enemyDamage;
 	int characterDamage;
 	int enemyHp = enemy.getHp();
-	int characterHp = character.getHpMin();
+	int characterHp = character.getBaseHp();
 
 	do
 	{
@@ -40,8 +39,9 @@ void Event::Fight(Character& character)
 		{
 			std::cout << "YOU WIN!!!" << std::endl;
 			system("pause");
-			break;
+			character.setLevel();
 			updateStats(character);
+			break;
 		}
 		
 		Sleep(1500);
@@ -65,7 +65,7 @@ void Event::updateStats(Character& character)
 	{
 		switch (choice)
 		{
-		case 1: character.setHpMax(10);
+		case 1: character.setHp(10);
 			std::cout << "You upgrade health points." << std::endl;
 			break;
 		case 2: character.setStrenght(2);
