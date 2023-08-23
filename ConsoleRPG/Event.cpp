@@ -5,16 +5,23 @@ void Event::Fight(Character& character)
 {
 	system("CLS");
 
-	Enemy enemy = Enemy(character.getLevel() + rand() % 2);
+	Enemy enemy = Enemy();
 
 	int enemyDamage;
 	int characterDamage;
 	int enemyHp = enemy.getHp();
 	int characterHp = character.getBaseHp();
 
+	std::cout << "You will face with:\n";
+	enemy.displayStat();
+	std::cout << std::endl;
+
 	do
 	{
 		enemyDamage = rand() % (enemy.getDmgMax() + enemy.getDmgMin());		
+
+		if (enemyDamage == 0)
+			enemyDamage = 1;
 
 		std::cout << "Enemy total attack: " << enemyDamage << std::endl;
 		characterHp -= enemyDamage;
@@ -39,7 +46,6 @@ void Event::Fight(Character& character)
 		{
 			std::cout << "YOU WIN!!!" << std::endl;
 			system("pause");
-			character.setLevel();
 			updateStats(character);
 			break;
 		}
@@ -65,7 +71,7 @@ void Event::updateStats(Character& character)
 	{
 		switch (choice)
 		{
-		case 1: character.setHp(10);
+		case 1: character.setMaxHp(10);
 			std::cout << "You upgrade health points." << std::endl;
 			break;
 		case 2: character.setStrenght(2);

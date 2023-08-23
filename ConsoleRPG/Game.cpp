@@ -45,10 +45,10 @@ void Game::saveGame()
 
 	if (gameFile_.is_open())
 	{
-		gameFile_ << character.getLevel() << std::endl
-			<< character.getBaseHp() << std::endl
-			<< character.getStrenght() << std::endl
-			<< character.getDexterity() << std::endl;
+		gameFile_ << character.getBaseHp() << std::endl
+				<< character.getStrenght() << std::endl
+				<< character.getDexterity() << std::endl
+				<< character.getExpirience() << std::endl;
 	}
 
 	gameFile_.close();
@@ -68,10 +68,10 @@ void Game::loadGame()
 		{
 			switch (lineCount)
 			{
-			case 1: character.loadLevel(atoi(line.c_str()));
-			case 2: character.loadHp(atoi(line.c_str()));
-			case 3: character.loadStrenght(atoi(line.c_str()));
-			case 4: character.loadDexterity(atoi(line.c_str()));
+			case 1: character.loadHp(atoi(line.c_str()));
+			case 2: character.loadStrenght(atoi(line.c_str()));
+			case 3: character.loadDexterity(atoi(line.c_str()));
+			case 4: character.loadExpirience(atoi(line.c_str()));
 				break;
 			}
 			++lineCount;

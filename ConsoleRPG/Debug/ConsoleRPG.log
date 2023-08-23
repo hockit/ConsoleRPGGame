@@ -1,2 +1,7 @@
-﻿  Event.cpp
+﻿  Character.cpp
+  Enemy.cpp
+  Event.cpp
+  Game.cpp
+  main.cpp
+  Generowanie kodu...
   ConsoleRPG.vcxproj -> D:\C++_projekty\ConsoleRPG\Debug\ConsoleRPG.exe
