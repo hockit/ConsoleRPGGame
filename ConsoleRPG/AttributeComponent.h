@@ -1,6 +1,5 @@
 #pragma once
-
-using statType = unsigned int;
+#include "Types.h"
 
 class AttributeComponent
 {
