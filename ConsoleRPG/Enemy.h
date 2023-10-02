@@ -1,38 +1,34 @@
 #pragma once
-#include "HEADERS.h"
+#include "Types.h"
+#include <string>
+
+enum class EnemyType
+{
+	GOBLIN = 2,
+	CURSE = 5,
+	DEMON = 7,
+	TITAN = 10
+};
 
 class Enemy
 {
 public:
 
-	Enemy();
+	Enemy(EnemyType enemyType);
 
-	void displayStat() const;
+	void displayEnemy() const;
 
-	int getHp() const { return hp_; }
-	int getDmgMin() const { return damageMin_; }
-	int getDmgMax() const { return damageMax_; }
-	int getRewardExp() const { return rewardExp_; }
+	std::string getName() const { return name_; }
+	statType getHealth() const { return health_; }
 
-	void setHp(int hpSubstract) { hp_ -= hpSubstract; }
 private:
 
 	std::string name_{ "" };
-	// Base attributes
-	int hp_{ 3 };
-	int damageMin_{ 1 };
-	int damageMax_{ 2 };
-	int rewardExp_{ 10 };
-
-	enum class FEnemyPower
-	{
-		GOBLIN = 2,
-		CURSE = 4,
-		DEMON = 6,
-		TITAN = 10
-	};
-
-	void CreateEnemy();
+	EnemyType enemyType_;
+	statType health_{ 8 };
+	statType damageMin_{ 2 };
+	statType damageMax_{ 5 };
+	expType expReward_{ 10 };
 	
 };
 
